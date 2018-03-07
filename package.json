@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd NGPokedex && npm run start",
+    "start": "npm run start:back & npm run start:front",
+    "start:back": "cd APIPokedex && npm start",
+    "start:front": "cd NGPokedex && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

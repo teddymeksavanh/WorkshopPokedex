@@ -1,1 +1,5 @@
 ./NGPokedex/node_modules
+node_modules
+./APIPokedex/node_modules
+./APIPokedex/Express/node_modules
+./APIPokedex/Mongo/node_modules

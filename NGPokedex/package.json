@@ -5,8 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:withserver": "nodemon ./src/mongoose/server.ts & ng server"
+    "start": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +24,7 @@
     "mongoose": "^5.0.9",
     "ngx-modal": "0.0.29",
     "npm": "^5.4.2",
-    "rxjs": "^5.0.1",
+    "rxjs": "^5.5.6",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
