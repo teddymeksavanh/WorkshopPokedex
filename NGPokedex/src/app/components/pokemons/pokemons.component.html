@@ -1,0 +1,131 @@
+<!-- Search Input -->
+<div class="row">
+	<div class="col-md-12 text-center search-wrapper">
+		<input class="col-md-6" #searchBox id="search-box" (keyup)="searchByType(searchBox.value)" placeholder="Search by type (fire, poison...)" />
+		<input class="col-md-6" #searchBoxx id="search-box2" (keyup)="searchByAbility(searchBoxx.value)" placeholder="Search by ability" />
+	</div>
+</div>
+
+
+<!-- Default Pokemons -->
+<div class="pokemons" *ngIf="searchedPokemons.length === 0">
+  <div class="pokemon" *ngFor="let pokemon of pokemons">
+  	<div class="pokemon-number">
+  		{{pokemon.id}}
+  	</div>
+		<img class="display-block pokemon-sprite" src="{{pokemon.sprites.front_default}}"/>
+  	<span class="pokemon-title">
+  		{{pokemon.name | camelCase }}
+  	</span>
+
+		<div class="row">
+			<img class="pokemon-icon" src="../assets/more.png" (click)="myModal.open()"/>
+	    <modal
+			#myModal
+			modalClass="pkm-modal"
+		>
+		<modal-header class="pkm-modal-header"></modal-header>
+        <modal-content>
+        	<div class="col-md-12">
+        		<img class="display-block pokemon-sprite" src="{{pokemon.sprites.front_default}}"/>
+        	</div>
+
+			<div class="col-md-12">
+				<h2>{{pokemon.name | camelCase }}</h2>
+			</div>
+
+        	<div class="col-md-12 enhance-margin">
+	         	<div class="col-md-6 col-sm-6 col-xs-6">
+	         		<span class="display-block pokemon-subtitle">Id</span>
+	        		<span class="display-block pokemon-data">{{pokemon.id}}</span>
+	        	</div>
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Name</span>
+	        		<span class="display-block pokemon-data">{{pokemon.name | camelCase}}</span>
+	        	</div>
+	        </div>
+
+	        <div class="col-md-12 enhance-margin">
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Abilities</span>
+	        		<span class="pokemon-ability pokemon-data" *ngFor="let abilityWrapper of pokemon.abilities">
+	          		{{abilityWrapper.ability.name | camelCase }}
+	          	</span>
+	        	</div>
+
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Types</span>
+	        		<span class="pokemon-ability pokemon-data" *ngFor="let typesWrapper of pokemon.types">
+	          		{{typesWrapper.type.name | camelCase }}
+	          	</span>
+	        	</div>
+	        </div>
+
+        </modal-content>
+        <modal-footer class="pkm-modal-footer">
+          <button class="btn btn-success" (click)="myModal.close()">Close</button>
+				</modal-footer>
+	    </modal>
+		</div>
+  </div>
+</div>
+
+<!-- SearchedPokemons -->
+<div class="pokemons" *ngIf="searchedPokemons.length > 0">
+  <div class="pokemon" *ngFor="let searchedPokemon of searchedPokemons">
+  	<div class="pokemon-number">
+  		{{searchedPokemon.id}}
+  	</div>
+		<img class="display-block pokemon-sprite" src="{{searchedPokemon.sprites.front_default}}"/>
+  	<span class="pokemon-title">
+  		{{searchedPokemon.name | camelCase }}
+  	</span>
+
+		<div class="row">
+			<img class="pokemon-icon" src="../assets/more.png" (click)="myModal.open()"/>
+	    <modal #myModal>
+        <modal-header>
+            <h2>{{searchedPokemon.name | camelCase }}</h2>
+        </modal-header>
+        <modal-content>
+        	<div class="col-md-12">
+        		<img class="display-block pokemon-sprite" src="{{searchedPokemon.sprites.front_default}}"/>
+        	</div>
+
+        	<div class="col-md-12 enhance-margin">
+	         	<div class="col-md-6 col-sm-6 col-xs-6">
+	         		<span class="display-block pokemon-subtitle">Id</span>
+	        		<span class="display-block pokemon-data">{{searchedPokemon.id}}</span>
+	        	</div>
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Name</span>
+	        		<span class="display-block pokemon-data">{{searchedPokemon.name | camelCase}}</span>
+	        	</div>
+	        </div>
+
+	        <div class="col-md-12 enhance-margin">
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Abilities</span>
+	        		<span class="pokemon-ability pokemon-data" *ngFor="let abilityWrapper of searchedPokemon.abilities">
+	          		{{abilityWrapper.ability.name | camelCase }}
+	          	</span>
+	        	</div>
+
+	        	<div class="col-md-6 col-sm-6 col-xs-6">
+	        		<span class="display-block pokemon-subtitle">Types</span>
+	        		<span class="pokemon-ability pokemon-data" *ngFor="let typesWrapper of searchedPokemon.types">
+	          		{{typesWrapper.type.name | camelCase }}
+	          	</span>
+	        	</div>
+	        </div>
+
+        </modal-content>
+        <modal-footer>
+          <button class="btn btn-success" (click)="myModal.close()">Close</button>
+				</modal-footer>
+	    </modal>
+		</div>
+  </div>
+</div>
+
+<div class="error" *ngIf="error">{{error}}</div>

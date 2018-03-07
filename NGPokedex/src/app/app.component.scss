@@ -1,0 +1,19 @@
+.pokemonng2-container{
+	height: 100%;
+}
+
+.pokemon-index-title{
+	font-weight: 800;
+	font-size: 75px;
+	color: white;
+	margin-top: 25px;
+}
+
+.pokemon-index-subtitle{
+	font-size: 20px;
+	color: white;
+}
+
+.pkm-modal > .modal-header, .pkm-modal .modal-header{
+	border-bottom: 0 !important;
+}
