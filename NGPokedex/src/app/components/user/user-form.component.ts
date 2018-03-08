@@ -6,7 +6,7 @@ import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-    selector: 'my-user-form-light',
+    selector: 'my-user-form',
     template: `
         <form [formGroup]="userForm">
             <div class="row">
@@ -14,6 +14,11 @@ import { Observable } from 'rxjs/Observable';
                     <label> Name </label>
                     <input formControlName="name" class="w-100 form-control"/>
                     <div class="error mt-2" *ngIf="formErrors['name']">{{ formErrors['name'] }}</div>
+                </div>
+                <div class="col-6 pl-0 form-group">
+                    <label> Email </label>
+                    <input formControlName="email" class="w-100 form-control"/>
+                    <div class="error mt-2" *ngIf="formErrors['email']">{{ formErrors['email'] }}</div>
                 </div>
             </div>
         </form>
@@ -31,10 +36,12 @@ export class UserFormComponent implements OnInit {
     public userForm: FormGroup;
 
     formErrors = {
-        'name': ''
+        'name': '',
+        'email': ''
     };
     validationMessages = {
-        'firstName': {'required': 'The first name is required'}
+        'name': {'required': 'The name is required'},
+        'email': {'required': 'The email is required'}
     };
 
     constructor(
@@ -43,6 +50,7 @@ export class UserFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.initForm();
         // if (!this.userForm) {
         //     this.initForm(this.user)
         //         .valueChanges
@@ -53,6 +61,7 @@ export class UserFormComponent implements OnInit {
     initForm(user?: User) {
         this.userForm = this.fb.group({
             name: [user && user.name || null, Validators.required],
+            email: [user && user.email || null, Validators.required],
         });
         return this.userForm;
     }

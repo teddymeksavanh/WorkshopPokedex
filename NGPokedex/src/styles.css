@@ -45,6 +45,26 @@ body{
 	border-right: 1px solid rgba(255, 255, 255, .5);
 }
 
+.modal-backdrop.fade{
+	opacity: 0.5;
+}
+
+.modal-open .modal{
+	opacity: 1;
+}
+
+.modal-dialog{
+	margin-top: 130px !important;
+}
+
+.modal-header{
+	border-bottom: 0;
+}
+
+.modal-footer{
+	border-top: 0;
+}
+
 .label-type{
 	font-size: 12px;
 	padding: 0 10px;

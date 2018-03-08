@@ -1,23 +1,24 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './user-form.component';
 
 @Component({
   selector: 'my-user-form-modal',
   template: `
-    <div class="modal-header">
+    <!--<div class="modal-header">
       <h4 class="modal-title text-left" [innerHtml]="title"></h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <my-user-form-light
+        <my-user-form
             [user]="user"
             (onChangeUser)="handleOnChangeUser($event)"
-        ></my-user-form-light>
+        ></my-user-form>
     </div>
     <div class="modal-footer justify-content-between">
         <div class="">
@@ -26,33 +27,50 @@ import { UserFormComponent } from './user-form.component';
         <div class="">
             <button type="button" class="btn btn-success w-100" (click)="saveUser()">Validate</button>
         </div>
+    </div>-->
+
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <my-user-form
+            [user]="user"
+            (onChangeUser)="handleOnChangeUser($event)"
+        ></my-user-form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="submit()">Validate</button>
+      <button type="button" class="btn btn-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>
   `,
   styles: [`
       .btn-success {
           min-width: 120px;
       }
+      .modal-body {
+          padding: 50px;
+      }
   `]
 })
 export class UserFormModalComponent {
-    @Input() title;
-    @Input() user: User;
     @Output() onChangeUser = new EventEmitter();
     @ViewChild(UserFormComponent) userFormComponent: UserFormComponent;
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(
+        public activeModal: NgbActiveModal,
+        private authService: AuthService
+    ) {}
 
-    saveUser() {
+    submit() {
         if(this.userFormComponent.validate()) {
-            this.onChangeUser.emit(this.user);
+            this.authService.register(this.userFormComponent.userForm.value);
+            console.log('user', this.userFormComponent.userForm.value);
         }
     }
 
     closeModal() {
         this.activeModal.dismiss();
-    }
-
-    handleOnChangeUser($event) {
-        this.user = $event;
     }
 }

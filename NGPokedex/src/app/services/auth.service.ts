@@ -19,7 +19,7 @@ export class AuthService {
         private apiService: ApiService
     ) { }
 
-    register(): Observable<User[]> {
+    register(user): Observable<User[]> {
         return this.apiService.get('/auth/register');
     }
 

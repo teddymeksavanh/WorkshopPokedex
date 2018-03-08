@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { UserFormModalComponent } from '../user/user-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'my-navbar',
     template: `
         <div class="navbar">
-            <span class="link" href="/login"> Login </span>
-            <span class="link link2" href="/signup"> Register </span>
+            <span class="link"> Login </span>
+            <span class="link link2" (click)="openUserModal()"> Register </span>
             <i class="fas fa-user-circle"></i>
         </div>
     `,
@@ -44,7 +46,13 @@ import { Component, OnInit } from '@angular/core';
     `]
 })
 export class NavbarComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private modalService: NgbModal
+    ) { }
 
     ngOnInit() {}
+
+    openUserModal() {
+        const modalRef = this.modalService.open(UserFormModalComponent);
+    }
 }

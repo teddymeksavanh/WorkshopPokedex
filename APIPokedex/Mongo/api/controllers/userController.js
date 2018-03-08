@@ -5,7 +5,9 @@ const mongoose = require('mongoose'),
     Pokemon = mongoose.model('pokemons');
 
 exports.register = function(req, res){
+    console.log('req.body', req.body);
     var newUser = new User(req.body);
+    console.log('newUser', req.body);
     newUser.password = bcrypt.hashSync(req.body.password, 10);
     newUser.save(function(err, user) {
         if (err) {

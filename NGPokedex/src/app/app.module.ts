@@ -1,14 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, forwardRef } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ModalModule } from 'ngx-modal';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppComponent } from './app.component';
+import { UserFormComponent } from './components/user/user-form.component';
+import { UserFormModalComponent } from './components/user/user-modal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
@@ -28,13 +32,27 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     PokemonsComponent,
     CamelCasePipe,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserFormComponent,
+    UserFormModalComponent
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    UserFormComponent,
+    UserFormModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ModalModule,
+    ReactiveFormsModule,
+    CommonModule,
+    NgbModule.forRoot(),
     LocalStorageModule.withConfig({
       prefix: 'my-app',
       storageType: 'localStorage'
@@ -46,13 +64,13 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
         }
     ])
   ],
+  bootstrap: [AppComponent],
   providers: [
       PokemonMongoService,
       ApiService,
       HeadersService,
       UserService,
       AuthService
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
