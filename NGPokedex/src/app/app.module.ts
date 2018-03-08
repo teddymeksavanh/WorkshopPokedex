@@ -7,11 +7,13 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { RouterModule } from '@angular/router';
 
 // Components
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppComponent } from './app.component';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
 // Services
 import { ApiService } from './services/api.service';
+import { HeadersService } from './services/headers.service';
 import { PokemonService } from './services/pokemon.service';
 import { PokemonMongoService } from './services/pokemon-mongo.service';
 
@@ -22,7 +24,8 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
   declarations: [
     AppComponent,
     PokemonsComponent,
-    CamelCasePipe
+    CamelCasePipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,14 +39,15 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     RouterModule.forRoot([
         {
             path: '',
-            component: AppComponent
+            component: DashboardComponent
         }
     ])
   ],
   providers: [
       PokemonService,
       PokemonMongoService,
-      ApiService
+      ApiService,
+      HeadersService
   ],
   bootstrap: [AppComponent]
 })

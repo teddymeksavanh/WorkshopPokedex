@@ -6,9 +6,70 @@
 	</div>
 </div>
 
+<div class="pokemon" *ngFor="let pokemonMongo of pokemonsMongo | async">
+	   <div class="pokemon-number">
+		   {{pokemonMongo.number}}
+	   </div>
+	   <div class="pokemon-img">
+	   		<img class="display-block pokemon-sprite" src="{{pokemonMongo.img}}"/>
+   		</div>
+	   <span class="pokemon-title">
+		   {{pokemonMongo.name | camelCase }}
+	   </span>
+
+	   <div class="row">
+		   <img class="pokemon-icon" src="../assets/more.png" (click)="myModal.open()"/>
+	   <modal
+		   #myModal
+		   modalClass="pkm-modal"
+	   >
+	   <modal-header class="pkm-modal-header"></modal-header>
+		  <modal-content>
+		   <div class="col-md-12">
+			   <img class="display-block pokemon-sprite" src="{{pokemonMongo.img}}"/>
+		   </div>
+
+		   <div class="col-md-12">
+			   <h2>{{pokemonMongo.name | camelCase }}</h2>
+		   </div>
+
+		   <div class="col-md-12 enhance-margin">
+			   <div class="col-md-6 col-sm-6 col-xs-6">
+				   <span class="display-block pokemon-subtitle">Id</span>
+				   <span class="display-block pokemon-data">{{pokemonMongo.id}}</span>
+			   </div>
+			   <div class="col-md-6 col-sm-6 col-xs-6">
+				   <span class="display-block pokemon-subtitle">Name</span>
+				   <span class="display-block pokemon-data">{{pokemonMongo.name | camelCase}}</span>
+			   </div>
+		   </div>
+
+		   <div class="col-md-12 enhance-margin">
+			   <!-- <div class="col-md-6 col-sm-6 col-xs-6">
+				   <span class="display-block pokemon-subtitle">Abilities</span>
+				   <span class="pokemon-ability pokemon-data" *ngFor="let abilityWrapper of pokemonMongo.abilities">
+				   {{abilityWrapper.ability.name | camelCase }}
+			   </span> -->
+			   <!-- </div> -->
+
+			   <!-- <div class="col-md-6 col-sm-6 col-xs-6">
+				   <span class="display-block pokemon-subtitle">Types</span>
+				   <span class="pokemon-ability pokemon-data" *ngFor="let typesWrapper of pokemon.types">
+				   {{typesWrapper.type.name | camelCase }}
+			   </span>
+			   </div> -->
+		   </div>
+
+		  </modal-content>
+		  <modal-footer class="pkm-modal-footer">
+			<button class="btn btn-success" (click)="myModal.close()">Close</button>
+			   </modal-footer>
+	   </modal>
+	   </div>
+</div>
 
 <!-- Default Pokemons -->
-<div class="pokemons" *ngIf="searchedPokemons.length === 0">
+<!-- <div class="pokemons" *ngIf="searchedPokemons.length === 0">
   <div class="pokemon" *ngFor="let pokemon of pokemons">
   	<div class="pokemon-number">
   		{{pokemon.id}}
@@ -68,10 +129,10 @@
 	    </modal>
 		</div>
   </div>
-</div>
+</div> -->
 
 <!-- SearchedPokemons -->
-<div class="pokemons" *ngIf="searchedPokemons.length > 0">
+<!-- <div class="pokemons" *ngIf="searchedPokemons.length > 0">
   <div class="pokemon" *ngFor="let searchedPokemon of searchedPokemons">
   	<div class="pokemon-number">
   		{{searchedPokemon.id}}
@@ -128,4 +189,4 @@
   </div>
 </div>
 
-<div class="error" *ngIf="error">{{error}}</div>
+<div class="error" *ngIf="error">{{error}}</div> -->

@@ -29,22 +29,15 @@ export class PokemonsComponent implements OnInit {
 
     ngOnInit() {
         this.getPokemons();
-        this.getPokemonsMongo();
+        this.pokemonsMongo = this.getPokemonsMongo();
     }
 
-    getPokemonsMongo = () => {
-        this.pokemonMongoService
-            .fetchAll()
-            .map(re => {
-                console.log('re', re);
-            });
-    }
+    getPokemonsMongo = () => this.pokemonMongoService.fetchAll();
 
 	getPokemons(): void {
 		this.pokemonService
 			.getPokemons()
 			.then(pokemons => {
-                console.log('pokemons', pokemons);
                 return this.pokemons = pokemons
             })
 			.catch(error => this.error = error);
