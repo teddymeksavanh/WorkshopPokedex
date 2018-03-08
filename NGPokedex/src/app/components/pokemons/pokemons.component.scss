@@ -18,6 +18,7 @@
 	font-size: 25px;
 	color: white;
 	display: block;
+	font-family: 'Bebas';
 }
 
 .btn-pokemon-detail{
@@ -34,6 +35,24 @@
 	color: white;
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+
+.pokemon-info {
+	font-size: 17px;
+	color: white;
+	display: block;
+	margin: 5px 0;
+}
+
+.type-info {
+	margin-top: 3px;
+}
+
+.pokemon-info-title {
+	font-family: 'Bebas';
+	font-size: 13px;
+	color: white;
+	display: block;
 }
 
 .pokemon-img{
@@ -75,4 +94,9 @@
 
 .search-wrapper{
 	margin: 25px 0;
+}
+
+@font-face{
+	font-family: "Bebas";
+	src: url("../../../assets/bebas.woff") format("woff");
 }

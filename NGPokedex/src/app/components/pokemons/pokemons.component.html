@@ -18,6 +18,23 @@
 	   </span>
 
 	   <div class="row">
+		   <div class="pokemon-info col-md-6 border-right">
+			   {{pokemonMongo.height}}
+			   <span class="pokemon-info-title">Height</span>
+		   </div>
+
+		   <div class="pokemon-info col-md-6">
+			   {{pokemonMongo.weight}}
+			   <span class="pokemon-info-title">Weight</span>
+		   </div>
+	   </div>
+
+	   <div class="pokemon-info">
+		   <span [ngClass]="type" class="label-type" *ngFor="let type of pokemonMongo.types">{{type}}</span>
+		   <span class="pokemon-info-title type-info">Type</span>
+	   </div>
+
+	   <div class="row">
 		   <img class="pokemon-icon" src="../assets/more.png" (click)="myModal.open()"/>
 	   <modal
 		   #myModal
