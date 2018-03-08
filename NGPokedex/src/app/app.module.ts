@@ -9,11 +9,14 @@ import { RouterModule } from '@angular/router';
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 
 // Services
 import { ApiService } from './services/api.service';
 import { HeadersService } from './services/headers.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 import { PokemonService } from './services/pokemon.service';
 import { PokemonMongoService } from './services/pokemon-mongo.service';
 
@@ -25,7 +28,8 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     AppComponent,
     PokemonsComponent,
     CamelCasePipe,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
       PokemonService,
       PokemonMongoService,
       ApiService,
-      HeadersService
+      HeadersService,
+      UserService,
+      AuthService
   ],
   bootstrap: [AppComponent]
 })

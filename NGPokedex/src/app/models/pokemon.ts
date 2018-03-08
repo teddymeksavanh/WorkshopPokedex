@@ -1,7 +1,9 @@
 export class Pokemon {
 	id: number;
-  name: string;
-  url: string;
-  types: any;
+  	name: string;
+	weight: string;
+	height: string;
+	img: string;
+  	types: any;
 	abilities: any;
 }
