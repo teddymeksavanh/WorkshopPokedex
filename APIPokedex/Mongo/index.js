@@ -1,20 +1,25 @@
 /* global require process */
 
 const express = require('express'),
-	app = express(),
-	port = 3001,
-	mongoose = require('mongoose'),
-	models = require('./api/models/index'),
-	ObjectID = require('mongodb').ObjectID,
-	jsonwebtoken = require('jsonwebtoken'),
-	cheerio = require('cheerio'),
-	fetch = require('node-fetch'),
-	router = require('./api/routes/router.js'),
-	changeCase = require('change-case'),
-	pokemons = require('./pokemon_data.json');
+	  app = express(),
+	  port = 3001,
+	  mongoose = require('mongoose'),
+	  models = require('./api/models/index'),
+	  ObjectID = require('mongodb').ObjectID,
+	  jsonwebtoken = require('jsonwebtoken'),
+	  cheerio = require('cheerio'),
+	  fetch = require('node-fetch'),
+	  router = require('./api/routes/router.js'),
+	  changeCase = require('change-case'),
+	  pokemons = require('./pokemon_data.json');
+	  cors = require('cors');
+
 
 mongoose.connect('mongodb://localhost/pokedex');
 const conn = mongoose.connection;
+
+// Allow cors
+app.use(cors());
 
 app.use(function(req, res, next){
 	if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT'){
