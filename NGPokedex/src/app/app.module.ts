@@ -17,7 +17,6 @@ import { ApiService } from './services/api.service';
 import { HeadersService } from './services/headers.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { PokemonService } from './services/pokemon.service';
 import { PokemonMongoService } from './services/pokemon-mongo.service';
 
 // Pipes
@@ -48,7 +47,6 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     ])
   ],
   providers: [
-      PokemonService,
       PokemonMongoService,
       ApiService,
       HeadersService,
