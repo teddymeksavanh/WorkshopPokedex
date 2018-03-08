@@ -6,8 +6,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
     selector: 'my-navbar',
     template: `
         <div class="navbar">
-            <span class="link"> Login </span>
-            <span class="link link2" (click)="openUserModal()"> Register </span>
+            <span class="link" (click)="openUserSigninModal()"> Login </span>
+            <span class="link link2" (click)="openUserRegisterModal()"> Register </span>
             <i class="fas fa-user-circle"></i>
         </div>
     `,
@@ -52,7 +52,15 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {}
 
-    openUserModal() {
+    openUserRegisterModal() {
+        console.log('register');
         const modalRef = this.modalService.open(UserFormModalComponent);
+        modalRef.componentInstance.type = 'register';
+    }
+
+    openUserSigninModal() {
+        console.log('signin');
+        const modalRef = this.modalService.open(UserFormModalComponent);
+        modalRef.componentInstance.type = 'signin';
     }
 }

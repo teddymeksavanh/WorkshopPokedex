@@ -6,23 +6,19 @@ const pokemonSchema = new Schema({
     //_id: Number,
     name: {
         type: String,
-        required: 'Name is required'/*,
-        unique: true*/
+        required: 'Name is required'
     },
     types: {
        type: Array
     },
     level: {
-        type: Number,
-        required: 'Level is required'
+        type: Number
     },
     img: {
-        type: String,
-        required: 'Image is required'
+        type: String
     },
     number: {
-        type: String,
-        required: 'Number is required'
+        type: String
     },
     weight: {
         type: String

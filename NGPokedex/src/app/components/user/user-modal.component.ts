@@ -19,6 +19,7 @@ import { UserFormComponent } from './user-form.component';
             [user]="user"
             (onChangeUser)="handleOnChangeUser($event)"
         ></my-user-form>
+        <br/>
     </div>
     <div class="modal-footer justify-content-between">
         <div class="">
@@ -55,6 +56,7 @@ import { UserFormComponent } from './user-form.component';
   `]
 })
 export class UserFormModalComponent {
+    @Input() type: string;
     @Output() onChangeUser = new EventEmitter();
     @ViewChild(UserFormComponent) userFormComponent: UserFormComponent;
 
@@ -65,8 +67,23 @@ export class UserFormModalComponent {
 
     submit() {
         if(this.userFormComponent.validate()) {
-            this.authService.register(this.userFormComponent.userForm.value);
-            console.log('user', this.userFormComponent.userForm.value);
+            if(this.type === 'register') {
+                this.authService
+                    .register(this.userFormComponent.userForm.value)
+                    .subscribe(user => {
+                        console.log('user saved');
+                        console.log('user', user);
+                    });
+            } else {
+                this.authService
+                    .signin(this.userFormComponent.userForm.value)
+                    .subscribe(user => {
+                        console.log('user logged');
+                        console.log('user', user);
+                    });
+            }
+        } else {
+            console.log('userForm has errors');
         }
     }
 

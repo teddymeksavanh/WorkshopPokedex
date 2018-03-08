@@ -13,12 +13,16 @@ import { Observable } from 'rxjs/Observable';
                 <div class="col-6 pl-0 form-group">
                     <label> Name </label>
                     <input formControlName="name" class="w-100 form-control"/>
-                    <div class="error mt-2" *ngIf="formErrors['name']">{{ formErrors['name'] }}</div>
                 </div>
                 <div class="col-6 pl-0 form-group">
                     <label> Email </label>
                     <input formControlName="email" class="w-100 form-control"/>
                     <div class="error mt-2" *ngIf="formErrors['email']">{{ formErrors['email'] }}</div>
+                </div>
+                <div class="col-6 pl-0 form-group">
+                    <label> Password </label>
+                    <input formControlName="password" class="w-100 form-control"/>
+                    <div class="error mt-2" *ngIf="formErrors['password']">{{ formErrors['password'] }}</div>
                 </div>
             </div>
         </form>
@@ -36,12 +40,12 @@ export class UserFormComponent implements OnInit {
     public userForm: FormGroup;
 
     formErrors = {
-        'name': '',
-        'email': ''
+        'email': '',
+        'password': ''
     };
     validationMessages = {
-        'name': {'required': 'The name is required'},
-        'email': {'required': 'The email is required'}
+        'email': {'required': 'The email is required'},
+        'password': {'required': 'The password is required'}
     };
 
     constructor(
@@ -62,6 +66,7 @@ export class UserFormComponent implements OnInit {
         this.userForm = this.fb.group({
             name: [user && user.name || null, Validators.required],
             email: [user && user.email || null, Validators.required],
+            password: [user && user.password || null, Validators.required]
         });
         return this.userForm;
     }
