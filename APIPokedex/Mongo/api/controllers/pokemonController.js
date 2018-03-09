@@ -31,7 +31,7 @@ exports.updatePokemon = function(req, res) {
         if (err)
             res.send(err);
         pokemon.name = req.body.name;
-
+        pokemon.level = req.body.level;
         pokemon.save(function(err) {
             if (err)
                 res.send(err);

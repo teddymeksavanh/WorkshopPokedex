@@ -22,7 +22,10 @@ const conn = mongoose.connection;
 app.use(cors());
 
 app.use(function(req, res, next){
-	if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT'){
+	if(req.headers.authorization) {
+		console.log('req', req.headers.authorization.split(' ')[0]);
+	}
+	if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'){
 		jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', function(err, decode){
 			if (err) req.user = undefined;
 			req.user = decode;
@@ -34,8 +37,6 @@ app.use(function(req, res, next){
 	}
 });
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
 app.use('/api', router.pokemon_router);
 app.use('/api', router.user_router);
 
